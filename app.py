@@ -81,27 +81,10 @@ def upload_file():
     newdf1=FeatureEncoding(newdf)
     ouptput=DoPrediction(newdf1)
    
-  # ouptput=ouptput.reset_index()
    jsonfiles = json.loads(ouptput.to_json(orient='records'))
- #  return 
-
-   # freqs = {
-   #    'status': 200,
-   #    'entities': ,
-   #    'error':""
-   # }
-
-   return ouptput.to_json(orient='records')
-  # return render_template('index.html', ctrsuccess=jsonfiles)
-
-  # lists = ouptput.tolist()
-  # json_str = json.dumps(lists)
-  # df= pd.read_csv('LSTM_TEST_Daliy_New_v3.csv',parse_dates=["Date"], date_parser=dateparse)
- # dataset=df[['Units','Year','Month','Day','MeanTemp','Day_Of_the_Week','Week_of_the_Month','Week_of_the_Year','IsWeekDay','Winter_State','Holidays','Event_SchoolHoliday']]
- #  return json_str
-   #return ouptput.to_json(orient="records")
-  # return ouptput.to_json(orient="records")
  
+   return ouptput.to_json(orient='records')
+  
    
 def addnewFeatures(dataset):
    dataset['is_month_start']=dataset.index.is_month_start.astype(int)
@@ -153,29 +136,9 @@ def DoPrediction(dataset):
    X_test, y_test = create_features(dataset, label='Units')
    dataset['MW_Prediction'] = model.predict(X_test)
    dataset['Date'] =  dataset['Year'].map(str) +"-" + dataset['Month'].map(str) +"-" + dataset['Day'].map(str)
-  # forecast_index1=pd.date_range(start='2020-01-03',periods=30)
-  # forecast_df1=pd.DataFrame(data=forecast1,index=forecast_index1,columns=['Units'])
-
-  # forecast_index1=pd.date_range(start='2020-01-03',periods=30)
-   #forecast_df1=pd.DataFrame(data=forecast1,index=forecast_index1,columns=['Units'])
+ 
    return dataset[:14]
    
-#def Preprocess(dataset):
-  #n_future=1
-  #n_past=2
-  #n_features=28
-  #train_x=[]
-  #train_y=[]
-
-
-  #n_traindays=round((len(dataset)))
-  #values=dataset.values
-  #train = values[:n_traindays, :]
-  #for i in range(n_past,len(train)-n_future +1):
-  #train_x.append(train[i-n_past:i,0:train.shape[1]])
-  #train_y.append(train[i+n_future-1:i+n_future,0])
-  #train_x1,train_y=np.array(train_x),np.array(train_y)
-  #return train_x1
 
 
 def DoPrediction2(dataset):
@@ -184,11 +147,6 @@ def DoPrediction2(dataset):
    X_test, y_test = create_features(dataset, label='Units')
    dataset['MW_Prediction'] = model.predict(X_test)
    dataset['Date'] =  dataset['Year'].map(str) +"-" + dataset['Month'].map(str) +"-" + dataset['Day'].map(str)
-  # forecast_index1=pd.date_range(start='2020-01-03',periods=30)
-  # forecast_df1=pd.DataFrame(data=forecast1,index=forecast_index1,columns=['Units'])
-
-  # forecast_index1=pd.date_range(start='2020-01-03',periods=30)
-   #forecast_df1=pd.DataFrame(data=forecast1,index=forecast_index1,columns=['Units'])
    return dataset.tail(30)
 
 
@@ -214,7 +172,6 @@ def upload_file():
     newdf=addnewFeatures(dataset)
     newdf1=FeatureEncoding(newdf)
     ouptput=DoPrediction2(newdf1)
-    #jsonfiles = json.loads(ouptput.to_json(orient='records'))
 
 
    return ouptput.to_json(orient='records')
@@ -239,9 +196,7 @@ def upload_file():
     df= pd.read_csv(savepath, date_parser=dateparse,index_col=0)
     dataset=df[['Units','Year','Month','Day','MeanTemp','Day_Of_the_Week','Week_of_the_Month','Week_of_the_Year','IsWeekDay','Winter_State','Holidays','Event_SchoolHoliday']]
     dataset['Date'] =  dataset['Year'].map(str) +"-" + dataset['Month'].map(str) +"-" + dataset['Day'].map(str)
-   # newdf=addnewFeatures(dataset)
-   # newdf1=FeatureEncoding(newdf)
-   # ouptput=DoPrediction2(newdf1)
+ 
    jsonfiles = json.loads(dataset.to_json(orient='records'))
 
 
@@ -310,11 +265,7 @@ def checkFile():
 
 
    return 'File Deleted Successfully'  
-   # if savepathPred is True:
-   #     files.append("Prediction File") 
-
-   # if savepathAnalyis1 is True:
-   #     files.append("Analysis File 1")  
+  
 
 		
 if __name__ == '__main__':
