@@ -26,16 +26,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 	
-# @app.route('/api/v1/uploader', methods = ['GET', 'POST'],endpoint='func2')
-# @cross_origin()
-# def upload_file():
-#    if request.method == 'POST':
-#      # f = request.files['file']
-#      # f.save(secure_filename("LSTM2020.csv"))
-#       #f.save("LSTM2020.csv")
-#      # f.save(os.path.join(app.config['UPLOAD_FOLDER'], "LSTM2020.csv"))
-#       #os.rename(f.filename,'LSTM2020.csv')
-#       return 'file uploaded successfully'
+
 
 @app.route('/api/v1/uploadertest', methods = ['GET', 'POST'],endpoint='func10')
 @cross_origin()
