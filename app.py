@@ -76,14 +76,6 @@ def upload_file():
       return 'file uploaded successfully'  
 
 
-# @app.route('/api/v1/uploaderAnalysis', methods = ['GET', 'POST'],endpoint='func20')
-# @cross_origin()
-# def upload_file():
-#    if request.method == 'POST':
-#       f = request.files['file']
-#       #f.save(secure_filename(f.filename))
-#       f.save(secure_filename("LSTM_TEST_Daliy_New_v3.csv"))
-#       return 'file uploaded successfully'     
 
 
 @app.route('/api/v1/GetData',  methods = ['GET', 'POST'],endpoint='func1')
