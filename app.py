@@ -129,7 +129,7 @@ def FeatureEncoding(dataset):
    dataset['UnitsLag_12']=dataset['UnitsLag_12'].fillna(0)
 
    return dataset
-
+   
 def DoPrediction(dataset):
    model = xgb.XGBRegressor()
    model.load_model('xgb.bin')
